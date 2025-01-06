@@ -1,0 +1,46 @@
+.card {
+    display: inline-block;
+    width: 200px;
+
+    border-radius: 10px 10px 0 0;
+
+    overflow: hidden;
+}
+
+.card__photo {
+    img {
+        width: 200px;
+        height: 270px;
+    }
+}
+
+.card__information {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    height: 164px;
+
+    border: 1px solid #000000;
+    border-top: 0;
+
+    text-align: center;
+
+    padding: 10px 0;
+
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+
+        background-color: #a5a5a5;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--btn-color);
+        border-radius: 4px;
+        border: 2px solid #a5a5a5;
+    }
+    span {
+        font-weight: 600;
+    }
+}
