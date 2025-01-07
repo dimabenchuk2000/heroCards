@@ -2,9 +2,9 @@ const cardsHero = () => {
   const cardsWrapper = document.querySelector(".cards__wrapper");
   const headerWrapper = document.querySelector(".header__wrapper");
 
-  fetch("dbHeroes.json")
-    .then((response) => response.json())
-    .then((data) => render(data));
+  const getData = () => {
+    return fetch("dbHeroes.json").then((response) => response.json());
+  };
 
   const render = (cards) => {
     cardsWrapper.innerHTML = "";
@@ -41,15 +41,13 @@ const cardsHero = () => {
 
   headerWrapper.addEventListener("click", (e) => {
     if (e.target.textContent === "All") {
-      fetch("dbHeroes.json")
-        .then((response) => response.json())
-        .then((data) => render(data));
+      getData().then((data) => render(data));
     } else if (e.target.tagName === "A") {
-      fetch("dbHeroes.json")
-        .then((response) => response.json())
-        .then((data) => filterCards(data, e.target.textContent));
+      getData().then((data) => filterCards(data, e.target.textContent));
     }
   });
+
+  getData().then((data) => render(data));
 };
 
 export default cardsHero;
