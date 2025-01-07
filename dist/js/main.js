@@ -1,1 +1,106 @@
-(()=>{"use strict";(()=>{const e=document.querySelector(".cards__wrapper"),t=document.querySelector(".header__wrapper");fetch("dbHeroes.json").then((e=>e.json())).then((e=>n(e)));const n=t=>{e.innerHTML="",t.forEach((t=>{e.innerHTML+=`\n      <div class="card">\n          <div class="card__photo">\n              <img src=${t.photo} alt="#">\n          </div>\n          <div class="card__information">\n              <p><span>Name: </span>${t.name}</p>\n              <p><span>Real name: </span>${t.realName}</p>\n              <p><span>Status: </span>${t.status}</p>\n              <p class="card__movies"><span>Movies: </span>${t.movies?t.movies.join(", "):"-"}</p>\n          </div>\n      </div>\n      `}))};t.addEventListener("click",(e=>{"All"===e.target.textContent?fetch("dbHeroes.json").then((e=>e.json())).then((e=>n(e))):"A"===e.target.tagName&&fetch("dbHeroes.json").then((e=>e.json())).then((t=>((e,t)=>{let s=[];e.forEach((e=>{"object"==typeof e.movies&&e.movies.find((n=>{n===t&&s.push(e)}))})),n(s)})(t,e.target.textContent)))}))})(),(()=>{const e=document.querySelector(".header"),t=e.querySelector(".header__btn");t.addEventListener("click",(()=>{t.classList.contains("header__btn--active")?(t.classList.remove("header__btn--active"),e.style.transform="translateY(-100%)"):(t.classList.add("header__btn--active"),e.style.transform="translateY(0%)")}))})()})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_cardsHero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cardsHero */ \"./modules/cardsHero.js\");\n/* harmony import */ var _modules_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/menu */ \"./modules/menu.js\");\n\r\n\r\n\r\n(0,_modules_cardsHero__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n(0,_modules_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./modules/cardsHero.js":
+/*!******************************!*\
+  !*** ./modules/cardsHero.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst cardsHero = () => {\r\n  const cardsWrapper = document.querySelector(\".cards__wrapper\");\r\n  const headerWrapper = document.querySelector(\".header__wrapper\");\r\n\r\n  fetch(\"dbHeroes.json\")\r\n    .then((response) => response.json())\r\n    .then((data) => render(data));\r\n\r\n  const render = (cards) => {\r\n    cardsWrapper.innerHTML = \"\";\r\n    cards.forEach((card) => {\r\n      cardsWrapper.innerHTML += `\r\n      <div class=\"card\">\r\n          <div class=\"card__photo\">\r\n              <img src=${card.photo} alt=\"#\">\r\n          </div>\r\n          <div class=\"card__information\">\r\n              <p><span>Name: </span>${card.name}</p>\r\n              <p><span>Real name: </span>${card.realName}</p>\r\n              <p><span>Status: </span>${card.status}</p>\r\n              <p class=\"card__movies\"><span>Movies: </span>${\r\n                card.movies ? card.movies.join(\", \") : \"-\"\r\n              }</p>\r\n          </div>\r\n      </div>\r\n      `;\r\n    });\r\n  };\r\n\r\n  const filterCards = (cards, movies) => {\r\n    let newCards = [];\r\n    cards.forEach((card) => {\r\n      if (typeof card.movies === \"object\") {\r\n        card.movies.find((movie) => {\r\n          if (movie === movies) newCards.push(card);\r\n        });\r\n      }\r\n    });\r\n    render(newCards);\r\n  };\r\n\r\n  headerWrapper.addEventListener(\"click\", (e) => {\r\n    if (e.target.textContent === \"All\") {\r\n      fetch(\"dbHeroes.json\")\r\n        .then((response) => response.json())\r\n        .then((data) => render(data));\r\n    } else if (e.target.tagName === \"A\") {\r\n      fetch(\"dbHeroes.json\")\r\n        .then((response) => response.json())\r\n        .then((data) => filterCards(data, e.target.textContent));\r\n    }\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cardsHero);\r\n\n\n//# sourceURL=webpack:///./modules/cardsHero.js?");
+
+/***/ }),
+
+/***/ "./modules/menu.js":
+/*!*************************!*\
+  !*** ./modules/menu.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst menu = () => {\r\n  const header = document.querySelector(\".header\");\r\n  const headerBtn = header.querySelector(\".header__btn\");\r\n\r\n  const closeMenu = () => {\r\n    headerBtn.classList.remove(\"header__btn--active\");\r\n    header.style.transform = \"translateY(-100%)\";\r\n  };\r\n\r\n  const openMenu = () => {\r\n    headerBtn.classList.add(\"header__btn--active\");\r\n    header.style.transform = \"translateY(0%)\";\r\n  };\r\n\r\n  header.addEventListener(\"click\", (e) => {\r\n    e.preventDefault();\r\n\r\n    if (\r\n      (headerBtn.classList.contains(\"header__btn--active\") &&\r\n        e.target.tagName === \"BUTTON\") ||\r\n      e.target.tagName === \"A\"\r\n    ) {\r\n      closeMenu();\r\n    } else openMenu();\r\n  });\r\n\r\n  document.addEventListener(\"click\", (e) => {\r\n    if (!e.target.closest(\".header\")) {\r\n      e.preventDefault();\r\n      closeMenu();\r\n    }\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (menu);\r\n\n\n//# sourceURL=webpack:///./modules/menu.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./index.js");
+/******/ 	
+/******/ })()
+;
